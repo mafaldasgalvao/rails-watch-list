@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>My Movie Lists</h1>
+
+  <%= link_to "Create New List", new_list_path, class: "btn-primary" %>
+
+  <div class="lists-grid">
+    <% @lists.each do |list| %>
+      <div class="list-card">
+        <h2><%= list.name %></h2>
+        <p><%= list.movies.count %> movies saved</p>
+        <%= link_to "View List", list_path(list), class: "btn-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

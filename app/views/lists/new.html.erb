@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Create a New List</h1>
+
+  <%= form_with model: @list do |form| %>
+    <% if @list.errors.any? %>
+      <div class="errors">
+        <h3>Could not save the list:</h3>
+        <ul>
+          <% @list.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name, "List Name" %>
+      <%= form.text_field :name, placeholder: "e.g. Drama, Sci-Fi, To Rewatch..." %>
+    </div>
+
+    <%= form.submit "Create List", class: "btn-primary" %>
+  <% end %>
+
+  <%= link_to "Back to Lists", lists_path %>
+</div>

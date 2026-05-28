@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Add a Movie to: <%= @list.name %></h1>
+
+  <%= form_with model: [@list, @bookmark] do |form| %>
+    <% if @bookmark.errors.any? %>
+      <div class="errors">
+        <h3>Could not bookmark this movie:</h3>
+        <ul>
+          <% @bookmark.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :movie_id, "Select a Movie" %>
+      <%= form.collection_select :movie_id, @movies, :id, :title, prompt: "Choose a movie..." %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :comment, "Comment (minimum 6 characters)" %>
+      <%= form.text_area :comment, placeholder: "e.g. Alan Turing recommended this movie." %>
+    </div>
+
+    <%= form.submit "Add to List", class: "btn-primary" %>
+  <% end %>
+
+  <%= link_to "Cancel", list_path(@list) %>
+</div>
